@@ -8,42 +8,42 @@ Maart 2017- Hendrik Leper (initially made for Chantal van Rijt
 #include <Metro.h>  // Include Metro library
 #define LED 13      // Define the led's pin 
 #define RP1 11      // Define the relay pin 1 &
-#define RP2 12      // relay pin 2
+#define RP2 10      // relay pin 2
 
 //  - - - deze variabelen zijn te veranderen - - -  //
-int maxSteps = 80;        // 80 slides in een carrousel,
+int maxSteps = 59;        // aantal stappen --- 80 slides in een carrousel,
 // maar het kan ook minder of meer zijn afhankelijk van het ritme
-int interVal = 3000;      // interval tussen dia's in milliseconden 1000 = 1 seconde
-// mag niet minder dan 800 zijn
-int pulseTime = 300;      // duur van de electrische pulse die de projector doet voortgaan
+int interVal = 2000;      // interval tussen dia's in milliseconden 1000 = 1 seconde
+// mag niet minder dan 1000 zijn
 boolean debug = false;    // print
 
 int RStepState1[] = {     // bepaal hier je steps voor projector 1
-  1, 1, 1, 0, 1, 1, 1, 0, // 1 = aan 0 = uit
-  1, 0, 0, 0, 1, 0, 0, 0, // 10 rijden van 8 stappen
-  1, 0, 0, 0, 1, 0, 0, 0,
-  1, 0, 0, 0, 1, 0, 1, 0,
+  1, 1, 0, 1, 1, 0, 1, 1, // 1 = aan 0 = uit
+  0, 1, 1, 1, 1, 0, 1, 1, // 10 rijen van 8 stappen
+  0, 1, 1, 1, 0, 0, 0, 1,
+  0, 1, 0, 0, 0, 1, 0, 0,
+  1, 0, 0, 1, 0, 0, 1, 1,
+  0, 0, 1, 0, 0, 1, 0, 0,
+  1, 1, 0, 1, 0, 0, 1, 0,
+  1, 1, 1/*, 0, 1, 0, 1, 0,
   1, 0, 1, 0, 1, 0, 1, 0,
-  1, 0, 1, 0, 1, 0, 1, 0,
-  1, 0, 1, 0, 1, 0, 1, 0,
-  1, 0, 1, 0, 1, 0, 1, 0,
-  1, 0, 1, 0, 1, 0, 1, 0,
-  1, 0, 1, 0, 1, 0, 1, 0
+  1, 0, 1, 0, 1, 0, 1, 0*/
 };
 int RStepState2[] = {     // bepaal hier je steps voor projector 2
-  0, 1, 0, 1, 0, 1, 0, 1, // 1 = aan 0 = uit
-  0, 1, 0, 1, 0, 1, 0, 1, // 10 rijden van 8 stappen
+  1, 1, 1, 0, 1, 0, 0, 1, // 1 = aan 0 = uit
+  0, 1, 1, 0, 0, 1, 0, 0, // 10 rijen van 8 stappen
+  1, 0, 0, 1, 1, 0, 0, 1,
+  0, 0, 1, 0, 0, 1, 0, 0,
+  0, 1, 0, 1, 0, 0, 0, 1,
+  1, 1, 0, 1, 1, 0, 1, 1,
+  1, 1, 0, 1, 1, 0, 1, 1,
+  0, 1, 1/*, 1, 0, 1, 0, 1,
   0, 1, 0, 1, 0, 1, 0, 1,
-  0, 1, 0, 1, 0, 1, 0, 1,
-  0, 1, 0, 1, 0, 1, 0, 1,
-  0, 1, 0, 1, 0, 1, 0, 1,
-  0, 1, 0, 1, 0, 1, 0, 1,
-  0, 1, 0, 1, 0, 1, 0, 1,
-  0, 1, 0, 1, 0, 1, 0, 1,
-  0, 1, 0, 1, 0, 1, 0, 1
+  0, 1, 0, 1, 0, 1, 0, 1*/
 };
 
 //  - - - deze variabelen zijn NIET te veranderen - - -  //
+int pulseTime = 200;      // duur van de electrische pulse die de projector doet voortgaan
 int ledState = LOW;  // houdt de staat van de leds en relays bij
 int RState1 = LOW;
 int RState2 = LOW;
